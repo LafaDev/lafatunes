@@ -17,6 +17,9 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
+          {/* <Route exact path="/"> */}
+          {/* {logado ? <Redirect to="/search" /> : <Login />} */}
+          {/* </Route> */}
           <Route exact path="/" render={ () => (<Login />) } />
           <Route path="/search" render={ () => (<Search />) } />
           <Route path="/album" render={ () => (<Album />) } />
