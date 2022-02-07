@@ -27,7 +27,6 @@ class Search extends React.Component {
   }
 
   async handleSearch() {
-    console.log('search');
     const { searchInput } = this.state;
     await this.returnSearch(searchInput);
     this.setState({ searchInput: '', artistName: searchInput });
