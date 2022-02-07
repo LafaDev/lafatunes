@@ -22,7 +22,7 @@ class App extends React.Component {
           {/* </Route> */}
           <Route exact path="/" render={ () => (<Login />) } />
           <Route path="/search" render={ () => (<Search />) } />
-          <Route path="/album" render={ () => (<Album />) } />
+          <Route path="/album:id" render={ () => (<Album />) } />
           <Route path="/favorites" render={ () => (<Favorites />) } />
           <Route path="/profile/edit" render={ () => (<ProfileEdit />) } />
           <Route exact path="/profile" render={ () => (<Profile />) } />
