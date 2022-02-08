@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
@@ -8,11 +9,16 @@ class Header extends React.Component {
     this.state = {
       loading: false,
       user: {},
+      currPage: '',
     };
+
+    this.getData = this.getData.bind(this);
+    this.activeTab = this.activeTab.bind(this);
   }
 
   componentDidMount() {
     this.getData();
+    this.activeTab();
   }
 
   async getData() {
@@ -26,23 +32,54 @@ class Header extends React.Component {
     );
   }
 
+  activeTab() {
+    const { page } = this.props;
+    this.setState({ currPage: page });
+  }
+
   render() {
-    const { user, loading } = this.state;
+    const { user, loading, currPage } = this.state;
     return (
-      <header data-testid="header-component">
-        <h1>Header</h1>
-        {loading ? (<p>Carregando...</p>) : null}
-        <h2 data-testid="header-user-name">{user.name}</h2>
+      <header
+        data-testid="header-component"
+        className="headerBox"
+      >
+        {loading ? (<h2>Carregando...</h2>) : (
+          <h2 data-testid="header-user-name">
+            Bem vindo,&nbsp;
+            {' '}
+            {user.name}
+            !
+          </h2>
+        ) }
         <nav>
           <ul>
             <li>
-              <Link to="/search" data-testid="link-to-search">Search</Link>
+              <Link
+                className={ (currPage === 'search') ? 'selected' : 'headerLink' }
+                to="/search"
+                data-testid="link-to-search"
+              >
+                Procurar
+              </Link>
             </li>
             <li>
-              <Link to="/favorites" data-testid="link-to-favorites">Favorites</Link>
+              <Link
+                className={ (currPage === 'favorites') ? 'selected' : 'headerLink' }
+                to="/favorites"
+                data-testid="link-to-favorites"
+              >
+                Favoritos
+              </Link>
             </li>
             <li>
-              <Link to="/profile" data-testid="link-to-profile">Profile</Link>
+              <Link
+                className={ (currPage === 'profile') ? 'selected' : 'headerLink' }
+                to="/profile"
+                data-testid="link-to-profile"
+              >
+                Perfil
+              </Link>
             </li>
           </ul>
         </nav>
@@ -50,5 +87,9 @@ class Header extends React.Component {
     );
   }
 }
+
+Header.propTypes = {
+  page: PropTypes.string.isRequired,
+};
 
 export default Header;

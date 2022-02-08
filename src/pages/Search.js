@@ -53,12 +53,13 @@ class Search extends React.Component {
       searchResult } = this.state;
     return (
       <div data-testid="page-search">
-        <Header />
-        <h1>Search</h1>
+        <Header page="search" />
+        <h1 className="pageTitle">Procure seu artista preferido!</h1>
         <form>
           <label htmlFor="searchInput">
             <input
               id="searchInput"
+              className="searchInput"
               name="searchInput"
               value={ searchInput }
               onChange={ this.handleChange }
@@ -72,6 +73,8 @@ class Search extends React.Component {
             data-testid="search-artist-button"
             disabled={ disableSearch }
             onClick={ this.handleSearch }
+            id="searchButton"
+            className="searchButton"
           >
             Pesquisar
           </button>
@@ -85,16 +88,22 @@ class Search extends React.Component {
             {artistName}
           </h1>
         ) : null}
-        <section>
+        <section className="resultContainer">
           {searchResult.map((collection) => (
             <Link
               to={ `/album/${collection.collectionId}` }
               data-testid={ `link-to-album-${collection.collectionId}` }
               key={ collection.collectionId }
+              className="resultCards"
             >
+              <img
+                src={ collection.artworkUrl100 }
+                alt={ collection.collectionName }
+                width="200"
+                height="200"
+              />
               <h1>{collection.collectionName}</h1>
-              <img src={ collection.artworkUrl100 } alt={ collection.collectionName } />
-              <h3>{collection.artistName}</h3>
+              {/* <h3>{collection.artistName}</h3> */}
             </Link>
             // <div key={ collection.collectionId }>
             // </div>

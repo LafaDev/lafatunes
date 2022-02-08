@@ -1,6 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import loadingGif from '../images/headphone.gif';
 import { createUser } from '../services/userAPI';
+import '../App.css';
 
 class Login extends React.Component {
   constructor() {
@@ -39,30 +41,54 @@ class Login extends React.Component {
   render() {
     const { loginName, submitDisable, loading, logado } = this.state;
     return (
-      <div data-testid="page-login">
+      <div data-testid="page-login" className="login">
         {logado ? (<Redirect to="/search" />) : null}
-        <h1>Login</h1>
-        <form>
-          <label htmlFor="login-name">
-            <input
-              id="login-name"
-              name="loginName"
-              type="text"
-              value={ loginName }
-              data-testid="login-name-input"
-              onChange={ this.handleValue }
+        {loading ? (
+          <div className="loadingContainer disable-select">
+            <img
+              src={ loadingGif }
+              alt="Headphones animation of loading"
+              className="loginImg"
+              width="180"
+              height="180"
             />
-          </label>
-          <button
-            type="button"
-            data-testid="login-submit-button"
-            disabled={ submitDisable }
-            onClick={ this.handleSubmit }
-          >
-            Entrar
-          </button>
-        </form>
-        {loading ? (<p>Carregando...</p>) : null}
+            <h1>Carregando...</h1>
+          </div>
+        ) : (
+          <form className="loginBox disable-select" autoComplete="off">
+            <img
+              className="loginImg"
+              src="https://media4.giphy.com/media/yZ9unuhuUemYvoeQaR/giphy.gif"
+              alt="Headphones"
+              width="240"
+              height="240"
+            />
+            <h1>TrybeTunes</h1>
+            <label htmlFor="login-name" className="loginLabel">
+              Login
+              <input
+                className="loginField"
+                id="login-name"
+                placeholder="Nome"
+                spellCheck="false"
+                name="loginName"
+                type="text"
+                value={ loginName }
+                data-testid="login-name-input"
+                onChange={ this.handleValue }
+              />
+            </label>
+            <button
+              className="loginButton"
+              type="button"
+              data-testid="login-submit-button"
+              disabled={ submitDisable }
+              onClick={ this.handleSubmit }
+            >
+              Entrar
+            </button>
+          </form>
+        )}
       </div>
     );
   }

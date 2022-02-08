@@ -5,8 +5,8 @@ class Profile extends React.Component {
   render() {
     return (
       <div data-testid="page-profile">
-        <Header />
-        <h1>Profile</h1>
+        <Header page="profile" />
+        <h1 className="pageTitle">Profile</h1>
       </div>
     );
   }
