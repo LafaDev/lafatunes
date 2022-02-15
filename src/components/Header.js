@@ -45,12 +45,16 @@ class Header extends React.Component {
         className="headerBox"
       >
         {loading ? (<h2>Carregando...</h2>) : (
-          <h2 data-testid="header-user-name">
-            Bem vindo,&nbsp;
-            {' '}
-            {user.name}
-            !
-          </h2>
+          <div>
+            <h2 className="headerTitle">Bem vindo,</h2>
+            <h2 className="headerTitleName" data-testid="header-user-name">
+              {/* Bem vindo,&nbsp; */}
+              {/* {' '} */}
+              {user.name}
+              {/* ! */}
+            </h2>
+            <h2 className="headerTitle">!</h2>
+          </div>
         ) }
         <nav>
           <ul>

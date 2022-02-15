@@ -153,6 +153,15 @@ ul li {
   width: 50%;
 }
 
+.headerTitle, .headerTitleName {
+  display: inline-block;
+  margin-left: 0;
+}
+
+.headerTitleName {
+  margin-right: 0;
+}
+
 .loadingDel {
   margin-top: 15%;
   text-align: center;

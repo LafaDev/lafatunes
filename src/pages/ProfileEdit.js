@@ -6,7 +6,7 @@ class ProfileEdit extends React.Component {
     return (
       <div data-testid="page-profile-edit">
         <Header />
-        <h1>ProfileEdit</h1>
+        <h1 className="pageTitle">Profile Edit</h1>
       </div>
     );
   }
