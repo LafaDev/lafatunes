@@ -55,7 +55,11 @@ class Login extends React.Component {
             <h1>Carregando...</h1>
           </div>
         ) : (
-          <form className="loginBox disable-select" autoComplete="off">
+          <form
+            className="loginBox disable-select"
+            autoComplete="off"
+            onSubmit={ this.handleSubmit }
+          >
             <img
               className="loginImg"
               src="https://media4.giphy.com/media/yZ9unuhuUemYvoeQaR/giphy.gif"

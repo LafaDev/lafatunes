@@ -46,7 +46,7 @@ class Album extends React.Component {
         { loading ? <h1>Carregando...</h1> : null}
         <h1 data-testid="artist-name">{ artistName }</h1>
         <h1 data-testid="album-name">{ collectionName }</h1>
-        <ul>
+        <ul className="musicList">
           {musics.slice(1).map(((e) => (
             <li key={ e.trackId }>
               <MusicCard { ...e } />

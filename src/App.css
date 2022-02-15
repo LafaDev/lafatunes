@@ -202,6 +202,77 @@ input:-webkit-autofill:active {
   transition: 2s;
 }
 
+.musicList {
+  align-content: center;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: space-evenly;
+  padding-left: 0;
+  row-gap: 5ch;
+}
+
+.musicCard {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2) , 0 15px 40px rgba(0, 0, 0, 0.05);
+  margin-left: 17px;
+  margin-right: 17px;
+  margin-top: auto;
+}
+
+.musicCard img {
+  margin-left: 1em;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+audio {
+  background-color: #a9b1d6;
+  border: none;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  vertical-align: middle;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: #a9b1d6;
+  border: none;
+  margin: 0;
+  outline: none;
+  padding: 0;
+}
+
+.musicSub {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 8px 8px 8px 1em;
+  text-align: left;
+}
+
+.musicCard audio {
+  margin-right: 1em;
+}
+
+.musicCard h3 {
+  background-color: #0f0f14;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 10px;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  text-align: center;
+  text-shadow: -1px 0 black , 0 1px black , 1px 0 black , 0 -1px black;
+}
+
+.loadingMusic {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 0 30%;
+  padding: 0;
+}
+
+
 .loginButton {
   background-color: #414868;
   border: none;

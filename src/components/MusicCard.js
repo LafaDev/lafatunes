@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   constructor() {
@@ -12,39 +12,45 @@ class MusicCard extends React.Component {
     this.handleFavorite = this.handleFavorite.bind(this);
   }
 
-  handleFavorite({ target }) {
-    const { ...music } = this.props;
-    const { checked } = target;
-    const { isFavorite } = this.state;
+  async componentDidMount() {
+    const { trackId } = this.props;
+    const favorites = await getFavoriteSongs();
+    favorites.forEach((song) => {
+      if (song.trackId === trackId) {
+        this.setState({ isFavorite: true });
+      }
+    });
+  }
 
-    console.log(isFavorite);
-    console.log(checked);
-    if (isFavorite === false) {
+  handleFavorite() {
+    const { ...music } = this.props;
+    const { isFavorite } = this.state;
+    // if false to true
+    if (!isFavorite) {
       this.setState(
         { loading: true },
         async () => {
           await addSong(music);
-          this.setState({ isFavorite: true, loading: false });
+          await this.setState({ isFavorite: true, loading: false });
         },
       );
-    } else {
+    } else if (isFavorite) {
       this.setState(
         { loading: true },
         async () => {
-          this.setState({ isFavorite: false, loading: false });
+          await this.setState({ isFavorite: false, loading: false });
         },
       );
     }
-    console.log(isFavorite);
   }
 
   render() {
-    const { artworkUrl30, previewUrl, trackName, trackId } = this.props;
-    const { checked, loading } = this.state;
+    const { artworkUrl60, previewUrl, trackName, trackId } = this.props;
+    const { isFavorite, loading } = this.state;
     return (
-      <div>
+      <div className="musicCard">
         <h3>{ trackName }</h3>
-        <img src={ artworkUrl30 } alt={ trackName } />
+        <img src={ artworkUrl60 } alt={ trackName } />
         <audio data-testid="audio-component" src={ previewUrl } controls>
           <track kind="captions" />
           O seu navegador não suporta o elemento
@@ -52,24 +58,25 @@ class MusicCard extends React.Component {
           <code>audio</code>
           .
         </audio>
-        <label htmlFor={ `track-${trackId}` }>
+        <br />
+        <label className="musicSub" htmlFor={ `track-${trackId}` }>
           Favorita
           <input
             id={ `track-${trackId}` }
             type="checkbox"
-            checked={ checked }
+            checked={ isFavorite }
             data-testid={ `checkbox-music-${trackId}` }
             onChange={ this.handleFavorite }
           />
-          { loading ? <p>Carregando...</p> : null }
         </label>
+        { loading ? <p className="loadingMusic">Carregando...</p> : null }
       </div>
     );
   }
 }
 
 MusicCard.propTypes = {
-  artworkUrl30: PropTypes.string.isRequired,
+  artworkUrl60: PropTypes.string.isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackName: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,

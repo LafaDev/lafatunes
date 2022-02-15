@@ -26,7 +26,8 @@ class Search extends React.Component {
     } else { this.setState({ disableSearch: true }); }
   }
 
-  async handleSearch() {
+  async handleSearch(e) {
+    e.preventDefault();
     const { searchInput } = this.state;
     await this.returnSearch(searchInput);
     this.setState({ searchInput: '', artistName: searchInput });
@@ -55,7 +56,7 @@ class Search extends React.Component {
       <div data-testid="page-search">
         <Header page="search" />
         <h1 className="pageTitle">Procure seu artista preferido!</h1>
-        <form>
+        <form onSubmit={ this.handleSearch }>
           <label htmlFor="searchInput">
             <input
               id="searchInput"
