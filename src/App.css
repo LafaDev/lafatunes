@@ -153,6 +153,11 @@ ul li {
   width: 50%;
 }
 
+.loadingDel {
+  margin-top: 15%;
+  text-align: center;
+}
+
 .loadingContainer {
   left: 25%;
   position: absolute;

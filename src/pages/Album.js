@@ -49,7 +49,7 @@ class Album extends React.Component {
         <ul className="musicList">
           {musics.slice(1).map(((e) => (
             <li key={ e.trackId }>
-              <MusicCard { ...e } />
+              <MusicCard { ...e } page="album" />
             </li>
           )))}
         </ul>
