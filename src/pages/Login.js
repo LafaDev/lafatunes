@@ -67,7 +67,7 @@ class Login extends React.Component {
               width="240"
               height="240"
             />
-            <h1>TrybeTunes</h1>
+            <h1>LafaTunes</h1>
             <label htmlFor="login-name" className="loginLabel">
               Login
               <input
