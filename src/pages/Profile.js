@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import profile from '../images/profile.png';
 import Header from '../components/Header';
 import { getUser } from '../services/userAPI';
 
@@ -27,10 +28,14 @@ class Profile extends React.Component {
       { loading: true },
       async () => {
         const response = await getUser();
+        let { image } = response;
+        if (!image || image === '') {
+          image = profile;
+        }
         this.setState({
           name: response.name,
           email: response.email,
-          image: response.image,
+          image,
           description: response.description,
           loading: false,
         });
@@ -41,20 +46,21 @@ class Profile extends React.Component {
   render() {
     const { name, email, image, description, loading } = this.state;
     return (
-      <div data-testid="page-profile">
+      <div data-testid="page-profile" className="profile-container">
         <Header page="profile" />
-        <h1 className="pageTitle">Profile</h1>
+        <h1 className="pageTitle" id="profiletitle">Profile</h1>
         {loading ? (<h1>Carregando...</h1>) : (
           <div>
             <img
               src={ image }
               alt="user"
               data-testid="profile-image"
+              id="profile-image"
             />
-            <p>{name}</p>
-            <p>{email}</p>
+            <p id="profile-name">{name}</p>
+            <p id="profile-email">{email}</p>
             <p>{description}</p>
-            <Link to="/profile/edit">Editar perfil</Link>
+            {/* <Link id="editperfil" to="/profile/edit">Editar perfil</Link> */}
           </div>
         )}
       </div>
