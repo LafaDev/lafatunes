@@ -168,6 +168,15 @@ ul li {
   pointer-events: none;
 }
 
+.errorgif {
+  margin-top: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  pointer-events: none;
+}
+
 .login {
   height: 100%;
   left: 0;
