@@ -34,7 +34,7 @@
 
 # Sobre o projeto <a name = "about"></a>
 
-O projeto foi realizado ao longo de uma semanas, durante o curso de Desenvolvimento Web da [Trybe](https://www.betrybe.com). <br>
+O projeto foi realizado ao longo de uma semana, durante o curso de Desenvolvimento Web da [Trybe](https://www.betrybe.com). <br>
 <br>O aplicativo consiste em um sistema que permite pesquisar e listar álbuns e músicas de bandas e artistas, além de ser possível executar o preview e favoritar músicas. <br> <br>
 Foi utilizada a iTunes Search API da apple para obter informações das músicas e artistas, bem como suas respectivas mídias.
 
